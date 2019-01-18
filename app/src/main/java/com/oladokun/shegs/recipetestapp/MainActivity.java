@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+       // setSupportActionBar(toolbar);
         initViews();
         pd.show();
         loadJson();
@@ -85,12 +85,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-/**
+
  try {
- Glide.with(this).load(R.drawable.cover).into((ImageView) findViewById(R.id.backdrop));
+ Glide.with(this).load(R.drawable.ewaagoyin).into((ImageView) findViewById(R.id.backdrop));
  } catch (Exception e) {
  e.printStackTrace();
- } **/
+ }
     }
 
     public void loadJson(){
