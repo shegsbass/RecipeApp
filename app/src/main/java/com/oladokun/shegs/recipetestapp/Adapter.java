@@ -22,7 +22,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     private Context mContext;
     private List<Recipe> recipeList;
-    // RecipeOnclickListner mListner;
+    //RecipeOnclickListner mListner;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView title;
@@ -35,6 +35,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             overflow = (ImageView) view.findViewById(R.id.overflow);
 
             view.setOnClickListener(this);
+            thumbnail.setOnClickListener(this);
+
         }
 
         @Override
