@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,6 +25,7 @@ public class SigninActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+
 
         Button = findViewById(R.id.getstarted);
         email = findViewById(R.id.email);
@@ -49,15 +51,15 @@ public class SigninActivity extends AppCompatActivity {
     }
     boolean isPassword (EditText text){
         CharSequence str = text.getText().toString();
-        return TextUtils.isEmpty(str);
+        return isEmpty(password);
     }
-
 
     void checkDataEntered(){
         if (isEmail(email) == false){
             email.setError("Enter a valid email address");
-        }else if(isPassword(password) == isEmpty(password) || password.length() < 6){
+        }else if(isPassword(password) == password.length()  < 6 == false){
             password.setError("Invalid! Your password should be 6 character long.");
+
         }
 
         else{
@@ -66,11 +68,6 @@ public class SigninActivity extends AppCompatActivity {
         }
     }
 
-
-   /* @Override
-    public void onClick(View v) {
-
-    }*/
 
     public void onClickhelp (View v){
         showDialog(0);}
