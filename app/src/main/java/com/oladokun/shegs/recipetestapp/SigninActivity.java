@@ -72,6 +72,29 @@ public class SigninActivity extends AppCompatActivity {
 
     }*/
 
-    
+    public void onClickhelp (View v){
+        showDialog(0);}
+
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case 0:
+                return new AlertDialog.Builder(this)
+                        .setIcon(R.drawable.salad)
+                        .setTitle("How to Login")
+                        .setNegativeButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        Toast.makeText(getBaseContext(),
+                                                "You can login now!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).setMessage("1. Input a valid Email Address else you won't be able to login\n" +
+                                "2. Enter any password of your choice above six (6) characters")
+                        .create();
+        }
+        return null;
+    }
 }
 
