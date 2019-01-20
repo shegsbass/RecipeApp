@@ -37,6 +37,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             view.setOnClickListener(this);
             thumbnail.setOnClickListener(this);
 
+
         }
 
         @Override
@@ -106,7 +107,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
                 case R.id.action_add_favourite:
                     Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
                     return true;
-                case R.id.action_play_next:
+                case R.id.action_view_next:
                     Toast.makeText(mContext, "Next Recipe", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
@@ -114,6 +115,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             return false;
         }
     }
+
+
 
     @Override
     public int getItemCount() { return recipeList == null ? 0 : recipeList.size(); }
