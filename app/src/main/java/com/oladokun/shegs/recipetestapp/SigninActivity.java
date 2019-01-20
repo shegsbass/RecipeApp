@@ -1,5 +1,8 @@
 package com.oladokun.shegs.recipetestapp;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,11 +12,13 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SigninActivity extends AppCompatActivity {
 
     private TextView Button;
     EditText email, password;
+    String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +47,31 @@ public class SigninActivity extends AppCompatActivity {
         CharSequence str = text.getText().toString();
         return TextUtils.isEmpty(str);
     }
+    boolean isPassword (EditText text){
+        CharSequence str = text.getText().toString();
+        return TextUtils.isEmpty(str);
+    }
+
 
     void checkDataEntered(){
         if (isEmail(email) == false){
             email.setError("Enter a valid email address");
+        }else if(isPassword(password) == isEmpty(password) || password.length() < 6){
+            password.setError("Invalid! Your password should be 6 character long.");
+        }
+
+        else{
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
     }
 
+
    /* @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+
     }*/
+
+    
 }
+
