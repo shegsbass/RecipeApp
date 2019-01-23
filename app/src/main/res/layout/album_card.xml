@@ -32,13 +32,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/thumbnail"
+                android:textStyle="bold"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textColor="@color/album_title"
                 android:textSize="@dimen/album_title" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,14 +47,25 @@
                 android:paddingBottom="@dimen/songs_count_padding_bottom"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
-                android:textSize="@dimen/songs_count" />
+                android:textSize="@dimen/songs_count" />-->
+
+            <TextView
+                android:id="@+id/headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:textStyle="italic"
+                android:paddingBottom="@dimen/headline_padding_bottom"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="@dimen/album_title_padding"
+                android:textSize="@dimen/headline_count" />
 
             <ImageView
                 android:id="@+id/overflow"
                 android:layout_width="@dimen/ic_album_overflow_width"
                 android:layout_height="@dimen/ic_album_overflow_height"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/thumbnail"
+                android:layout_below="@id/headline"
                 android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_dots" />

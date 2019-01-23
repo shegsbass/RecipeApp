@@ -25,7 +25,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     //RecipeOnclickListner mListner;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView title;
+        public TextView title, headline;
         public ImageView thumbnail, overflow;
 
         public MyViewHolder(View view) {
@@ -33,6 +33,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             title = (TextView) view.findViewById(R.id.title);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             overflow = (ImageView) view.findViewById(R.id.overflow);
+            headline = (TextView) view.findViewById(R.id.headline);
 
             view.setOnClickListener(this);
             thumbnail.setOnClickListener(this);
@@ -69,6 +70,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Recipe recipe = recipeList.get(position);
         holder.title.setText(recipe.getName());
+        holder.headline.setText(recipe.getHeadline());
 
         // loading recipe cover using Glide library
         Glide.with(mContext).load(recipe.getImage()).into(holder.thumbnail);
