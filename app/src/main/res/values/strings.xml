@@ -6,4 +6,5 @@
     <string name="backdrop_title">FOOD RECIPE</string>
     <string name="recipe_ingredient">INGREDIENT</string>
     <string name="backdrop_subtitle">Top 9 Recipes</string>
+    <string name="error_message">Failed to get results because you are offline. Please check your network connectivity and try again.</string>
 </resources>

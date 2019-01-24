@@ -4,12 +4,14 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.graphics.drawable.AnimationDrawable;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -18,12 +20,24 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.oladokun.shegs.recipetestapp.Model.Recipe;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class DetailRecipe extends AppCompatActivity {
     public static final String RECIPE_POSITION = "recipe_position";
 
+    public static final String PREFERENCE_NAME = "com.oladokun.shegs.recipetestapp";
+    public static final String PREFERENCE_KEY_NAME = "Favorite";
+
+    Set<String> isFavorite;
+    int isPosition;
+
     TextView nameOfFood, Ingredient, Description, Calories, Carbos, Time;
-    ImageView photoOfFood;
+    ImageView photoOfFood, FavoriteImage, blink;
     RatingBar Rating;
+
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +54,19 @@ public class DetailRecipe extends AppCompatActivity {
         Calories = findViewById(R.id.calories_text);
         Carbos = findViewById(R.id.carbos_text);
         Rating = findViewById(R.id.rating);
+        FavoriteImage = findViewById(R.id.unfavorite);
+        isFavorite = getFavorite();
+        FavoriteImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ConfirmFavorite(isPosition)) {
+                    isFavorite.remove(Integer.toString(isPosition));
+                } else {
+                    isFavorite.add(Integer.toString(isPosition));
+                }
+                saveFavorite();
+            }
+        });
 
         if (intent != null){
             int position = intent.getIntExtra(RECIPE_POSITION, 0);
@@ -52,6 +79,8 @@ public class DetailRecipe extends AppCompatActivity {
             Time.setText(recipe.getTime().toString());
             Calories.setText(recipe.getCalories().toString());
             Carbos.setText(recipe.getCarbos().toString());
+            saveFavorite();
+
 
             if (recipe.getRating() == null){
                 Rating.setRating(0);
@@ -60,6 +89,34 @@ public class DetailRecipe extends AppCompatActivity {
             }
         }
     }
+ 
+    public void saveFavorite(){
+        SharedPreferences prefs = getSharedPreferences(PREFERENCE_NAME,0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putStringSet(PREFERENCE_KEY_NAME, isFavorite).apply();
+        if (ConfirmFavorite (isPosition)){
+            FavoriteImage.setImageResource(R.drawable.ic_favorite_red);
+        }else{
+            FavoriteImage.setImageResource(R.drawable.favorite);
+
+    }
+    }
+
+
+    public boolean ConfirmFavorite(int id){
+        Set<String> mFav = getFavorite();
+        if (mFav.contains(Integer.toString(id))){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public Set<String> getFavorite(){
+        SharedPreferences prefs = getSharedPreferences(PREFERENCE_NAME, 0);
+        return prefs.getStringSet(PREFERENCE_KEY_NAME, new HashSet<String>());
+    }
+
 
     private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =

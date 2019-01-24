@@ -1,9 +1,11 @@
 package com.oladokun.shegs.recipetestapp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -20,6 +22,7 @@ import android.telecom.Call;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.oladokun.shegs.recipetestapp.API.Client;
@@ -99,16 +102,35 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Recipe>>() {
             @Override
             public void onResponse(retrofit2.Call<List<Recipe>> call, Response<List<Recipe>> response) {
-                recipeList = response.body();
-                adapter.setRecipeList(recipeList);
-                pd.dismiss();
+                if (response.isSuccessful()) {
+                    recipeList = response.body();
+                    adapter.setRecipeList(recipeList);
+                    pd.dismiss();
+                } else{
+                    showDialogBox();
+                }
             }
 
             @Override
             public void onFailure(retrofit2.Call<List<Recipe>> call, Throwable t) {
-
+                showDialogBox();
             }
         });
+
+    }
+
+    public void showDialogBox(){
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setIcon(R.drawable.restur)
+                .setTitle("OOOOPS! Some went wrong")
+                .setMessage("You seems to be having issues with your network connection.\nKindly check if your data is ON and retry later.")
+                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).create();
+        dialog.show();
 
     }
 

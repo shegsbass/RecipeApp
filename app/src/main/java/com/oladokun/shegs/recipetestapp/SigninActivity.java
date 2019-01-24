@@ -78,7 +78,7 @@ public class SigninActivity extends AppCompatActivity {
         switch (id) {
             case 0:
                 return new AlertDialog.Builder(this)
-                        .setIcon(R.drawable.salad)
+                        .setIcon(R.drawable.restur)
                         .setTitle("How to Login")
                         .setNegativeButton("OK",
                                 new DialogInterface.OnClickListener() {
