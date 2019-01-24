@@ -89,7 +89,7 @@ public class DetailRecipe extends AppCompatActivity {
             }
         }
     }
- 
+
     public void saveFavorite(){
         SharedPreferences prefs = getSharedPreferences(PREFERENCE_NAME,0);
         SharedPreferences.Editor editor = prefs.edit();
